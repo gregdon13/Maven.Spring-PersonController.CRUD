@@ -18,6 +18,7 @@ public class PersonController {
 
     @PostMapping("/people")
     public Person createPerson(Person p) {
+
         return personRepository.save(p);
     }
 
@@ -36,8 +37,8 @@ public class PersonController {
     }
 
     @PutMapping("/people/{id}")
-    public Person updatePerson(Person p) {
-        Person holder = personRepository.findOne(p.getId());
+    public Person updatePerson(@PathVariable Integer id, Person p) {
+        Person holder = personRepository.findOne(id);
         holder.setFirstName(p.firstName);
         holder.setLastName(p.lastName);
         return personRepository.save(holder);
